@@ -14,17 +14,14 @@
 
 
 int main(int argc, const char * argv[]) {
-    Matrix mat = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
-    Matrix mat2 = {{9,9,9,9},{9,9,9,9},{9,9,9,9},{9,9,9,9}};
+    Matrix adjacency_matrix = {{1,0,1},{0,1,1},{1,1,0}};
     
     adjacency_graph graph;
-    graph.set_adjacency_matrix(mat);
-
-    print_matrix(mat);
-    print_matrix(subtract_matrices(mat2, mat));
+    graph.set_node_values({3,2,1});
+    graph.set_adjacency_matrix(adjacency_matrix);
+    graph.print();
     
-    
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    print_matrix(graph.get_degree_matrix());
+    print_matrix(graph.get_laplacian_matrix());
     return 0;
 }

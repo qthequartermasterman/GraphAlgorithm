@@ -8,9 +8,10 @@
  =============adjacency_graph.cpp================*/
 
 #include "adjacency_graph.hpp"
+#include <iostream>
 
 
-
+/*Getters and Setters*/
 Matrix adjacency_graph::get_adjacency_matrix(){
     return adjacency_matrix;
 }
@@ -18,7 +19,25 @@ Matrix adjacency_graph::get_adjacency_matrix(){
 void adjacency_graph::set_adjacency_matrix(Matrix matrix){
     adjacency_matrix = matrix;
 }
+std::vector<int> adjacency_graph::get_node_values(){return node_values;}
+void adjacency_graph::set_node_values(std::vector<int> list){node_values = list;}
+//void adjacency_graph::add_node(int value){node_values.push_back(value);}
+//void adjacency_graph::delete_node(int value){}
 
+/*IO functions*/
+void adjacency_graph::print(){
+    std::cout << "Nodes:" << std::endl;
+    for (int i = 0; i < node_values.size(); i++){
+        std::cout << node_values[i] << "\t";
+    }
+    std::cout << std::endl;
+    std::cout << "Adjancency Matrix:" << std::endl;
+    print_matrix(adjacency_matrix);
+}
+
+
+
+/* Graph functions*/
 Matrix adjacency_graph::get_degree_matrix(){
     int number_of_rows = (int) adjacency_matrix.size();
     int number_of_columns = (int) adjacency_matrix[0].size();
@@ -41,10 +60,14 @@ Matrix adjacency_graph::get_laplacian_matrix(){
 } //L = D-A, where D is the degree matrix and A is adjacency matrix. This is useful to certain graph analysis techniques, by borrowing techniques from linear algebra
 
 
-bool matrix_search(int value_to_find){
-    
+bool adjacency_graph::list_search(int value_to_find){
+    for (int i = 0; i < node_values.size(); i++){
+        if (node_values[i] == value_to_find){
+            return true;
+        }
+    }
     return false;
-} //checks if value is in the matrix
+} //checks if value is in a list of all values
 bool adjacency_graph::depth_first_search(int value_to_find, int starting_x, int starting_y){
     
     return false;
