@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BCBD1101243690540039AC02 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD1100243690540039AC02 /* main.cpp */; };
+		BCBD1109243690A60039AC02 /* adjacency_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD1107243690A60039AC02 /* adjacency_graph.cpp */; };
+		BCBD110F243695490039AC02 /* pointer_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD110D243695490039AC02 /* pointer_graph.cpp */; };
+		BCBD11122436A0220039AC02 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD11102436A0220039AC02 /* matrix.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		BCBD10FD243690540039AC02 /* GraphAlgorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GraphAlgorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBD1100243690540039AC02 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BCBD1107243690A60039AC02 /* adjacency_graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = adjacency_graph.cpp; sourceTree = "<group>"; };
+		BCBD1108243690A60039AC02 /* adjacency_graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = adjacency_graph.hpp; sourceTree = "<group>"; };
+		BCBD110D243695490039AC02 /* pointer_graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointer_graph.cpp; sourceTree = "<group>"; };
+		BCBD110E243695490039AC02 /* pointer_graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointer_graph.hpp; sourceTree = "<group>"; };
+		BCBD11102436A0220039AC02 /* matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
+		BCBD11112436A0220039AC02 /* matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = matrix.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				BCBD1100243690540039AC02 /* main.cpp */,
+				BCBD1107243690A60039AC02 /* adjacency_graph.cpp */,
+				BCBD1108243690A60039AC02 /* adjacency_graph.hpp */,
+				BCBD110D243695490039AC02 /* pointer_graph.cpp */,
+				BCBD110E243695490039AC02 /* pointer_graph.hpp */,
+				BCBD11102436A0220039AC02 /* matrix.cpp */,
+				BCBD11112436A0220039AC02 /* matrix.hpp */,
 			);
 			path = GraphAlgorithm;
 			sourceTree = "<group>";
@@ -119,7 +134,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBD11122436A0220039AC02 /* matrix.cpp in Sources */,
 				BCBD1101243690540039AC02 /* main.cpp in Sources */,
+				BCBD1109243690A60039AC02 /* adjacency_graph.cpp in Sources */,
+				BCBD110F243695490039AC02 /* pointer_graph.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

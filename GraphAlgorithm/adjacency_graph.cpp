@@ -9,6 +9,8 @@
 
 #include "adjacency_graph.hpp"
 #include <iostream>
+#include <queue>
+
 
 
 /*Getters and Setters*/
@@ -68,11 +70,126 @@ bool adjacency_graph::list_search(int value_to_find){
     }
     return false;
 } //checks if value is in a list of all values
-bool adjacency_graph::depth_first_search(int value_to_find, int starting_x, int starting_y){
-    
+
+std::list<int> adjacency_graph::get_nodes_adjacent_to_node(int node){
+    std::list<int> adjacent_nodes;
+    for (int i = 0; i < node_values.size(); i++){
+        if (adjacency_matrix[node][i]){
+            adjacent_nodes.push_back(i);
+        }
+    }
+    return adjacent_nodes;
+}
+
+
+
+
+
+
+/* Depth First Search */
+void adjacency_graph::depth_first_search_util(int node, bool visited[]){
+    //Mark the current node as visited, then print it
+    visited[node] = true;
+    std::cout << node << " ";
+    //Now check all the adjacent nodes
+    std::list<int>::iterator i;
+    std::list<int> list_of_adjacent_nodes = get_nodes_adjacent_to_node(node);
+    for (i = list_of_adjacent_nodes.begin(); i != list_of_adjacent_nodes.end(); i++){
+        if (!visited[*i]){ //If we haven't been there, try that place first before moving on
+            depth_first_search_util(*i, visited);
+        }
+    }
+} //Recursive function used to implement the depth-first-search
+
+bool adjacency_graph::depth_first_search_util(int node, bool visited[], int value_to_find){
+    //Mark the current node as visited, then print it
+    visited[node] = true;
+    std::cout << node << " ";
+    //Is this the node we want?
+    if (node_values[node] == value_to_find){
+        return true;
+    }
+    //Now check all the adjacent nodes
+    std::list<int>::iterator i;
+    std::list<int> list_of_adjacent_nodes = get_nodes_adjacent_to_node(node);
+    for (i = list_of_adjacent_nodes.begin(); i != list_of_adjacent_nodes.end(); i++){
+        if (!visited[*i]){ //If we haven't been there, try that place first before moving on
+            bool result = depth_first_search_util(*i, visited, value_to_find);
+            if (result){
+                return true;
+            }
+        }
+    }
     return false;
+}
+
+
+void adjacency_graph::depth_first_search(int starting_node){
+    // Create a bool array indicating that we haven't visited any nodes yet
+    bool *visited = new bool[node_values.size()];
+    for (int i = 0; i < node_values.size(); i++)
+        visited[i] = false;
+    //Start the recursive search at starting_node
+    depth_first_search_util(starting_node, visited);
+    std::cout << std::endl;
+} //Prints all nodes visited in graph using a depth first search.
+
+
+bool adjacency_graph::depth_first_search(int value_to_find, int starting_node){
+    // Create a bool array indicating that we haven't visited any nodes yet
+    bool *visited = new bool[node_values.size()];
+    for (int i = 0; i < node_values.size(); i++)
+        visited[i] = false;
+    //Start the recursive search at starting_node
+    bool found_value = depth_first_search_util(starting_node, visited, value_to_find);
+    std::cout << std::endl;
+    return found_value;
 } //Finds value_to_find in graph using a depth first search. Returns true if the element is found. Returns false otherwise
 
-bool adjacency_graph::breadth_first_search(int value_to_find, int starting_x, int starting_y){
+
+
+
+
+
+/*Breadth First Search*/
+bool adjacency_graph::breadth_first_search(int value_to_find, int starting_node){
+    
+    
     return false;
 } //Finds value_to_find in graph using a breadth first search. Returns true if the element is found. Returns false otherwise
+
+void adjacency_graph::breadth_first_search(int starting_node){
+    // Mark all the vertices as not visited
+    int graph_size = (int) node_values.size();
+    bool *visited = new bool[graph_size];
+    for(int i = 0; i < graph_size; i++){
+        visited[i] = false;
+    }
+    // Create a queue for the breadth first search
+    std::queue<int> traversal_queue;
+    // Note that we've visited the current node and put the node into the traversal_queue
+    visited[starting_node] = true;
+    traversal_queue.push(starting_node);
+
+    //Add all the remaining nodes to the queue using a BFS
+    while(!traversal_queue.empty())
+    {
+        // Dequeue a vertex from queue and print it
+        int next_node = traversal_queue.front();
+        // The iterator i will go over all the adjacent node indices
+        std::list<int>::iterator i;
+        std::cout << next_node << " ";
+        traversal_queue.pop();
+        std::list<int> list_of_adjacent_nodes = get_nodes_adjacent_to_node(next_node);
+        
+        // Add all the unvisited, adjacent nodes
+        for (i = list_of_adjacent_nodes.begin(); i != list_of_adjacent_nodes.end(); i++)
+        {
+            if (!visited[*i])
+            {
+                visited[*i] = true;
+                traversal_queue.push(*i);
+            }
+        }
+    }
+}
