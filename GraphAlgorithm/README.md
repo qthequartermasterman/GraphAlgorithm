@@ -18,3 +18,10 @@ In a BFS, we will visit every node at least once, so the time complexity is atle
 
 #### Adjacency list-based Graphs
 In a BFS, we will visit every node at least once, so the time complexity is atleast O(V). We will also traverse each edge exactly twice, so it is also at least O(2E). Since the edges are stored as lists, and we don't have to iterate over the vertices again, we find that the complexity is thus O(V+2E) or simply O(V+E). 
+
+### Topological Sort
+The implementation of a Topological Sort here is almost a DFS, and thus has the same complexity as a DFS for whichever implementation
+
+### Prim's Algorithm
+#### Adjacency Matrix-based Graphs
+Our current implementation using an adjacency matrix checks each vertex then compares its distance to every other vertex. So the complexity is O(V^2).
