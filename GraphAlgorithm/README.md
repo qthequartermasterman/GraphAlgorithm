@@ -34,3 +34,10 @@ Our current implementation is comically inefficient. It's in the order of O(V^3)
 
 #### Adjacency List-based Graphs
 Using an adjacency list saves us the hastle of having to generate lists of edges to start with, so we can just join all our lists into one ( O(E) ) and then sort them O(E *logE). Thus, the overall complexity is simply O(E*logE)
+
+### Dijkstra's Algorithm
+#### Adjacency Matrix-based Graphs
+Using an adjacency matrix, for each of the V steps, we compare V distances, since we have to go over the entire V^2 matrix. So the complexity is O(V^2).
+
+#### Adjacency List-based Graphs
+Using an adjacency list, a heap can be used to reduce the complexity to O(E * logV)

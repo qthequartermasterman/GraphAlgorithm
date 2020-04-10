@@ -31,6 +31,8 @@ private:
     int find_minimum_distance_value(int distances[], bool mstSet[]);
     int find_kruskal_set(int i, int spanning_tree[]); //Finds the set of edges we have chosen connected to node i
     void kruskal_union(int i, int j, int spanning_tree[]); //Takes the union of two sets
+    
+    int find_min_distance_dijkstra(int distances[], bool sptSet[]);
 public:
     Matrix get_adjacency_matrix();
     void set_adjacency_matrix(Matrix matrix);
@@ -56,7 +58,7 @@ public:
     void topological_sort();
     void prims_algorithm();
     void kruskals_algorithm();
-    void dijkstras_algorithm();
+    void dijkstras_algorithm(int source_node);
     
 };
 #endif /* adjacency_graph_hpp */

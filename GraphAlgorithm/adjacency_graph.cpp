@@ -357,3 +357,58 @@ void adjacency_graph::kruskals_algorithm(){
     }
     std::cout << "\n Minimum cost= " << mincost << std::endl;
 }
+
+
+//Dijkstra's Algorithm
+int adjacency_graph::find_min_distance_dijkstra(int distances[], bool sptSet[]){
+    int current_minimum = INT_MAX; //Our currently smallest distance is infinity.
+    int index_of_minimum_value;
+    int graph_size = (int) node_values.size();
+    for (int v = 0; v < graph_size; v++){
+        if (sptSet[v] == false && distances[v] <= current_minimum){ //Make sure we haven't used the node and that it is closest than the current closest one.
+            current_minimum = distances[v];
+            index_of_minimum_value = v;
+        }
+    }
+    return index_of_minimum_value;
+}
+
+void adjacency_graph::dijkstras_algorithm(int source_node){
+    int graph_size = (int) node_values.size();
+    int distances[graph_size]; //We will store all the distances in this array.
+    bool sptSet[graph_size]; //Have we already used this node?
+    
+    for (int i = 0; i < graph_size; i++){ //Initialize
+        sptSet[i] = false;
+        distances[i] = INT_MAX;
+    }
+    
+    distances[source_node] = 0; //Clearly, a node is 0 away from itself
+    
+    // Iteratively find shortest path for all vertices
+    for (int count = 0; count < graph_size - 1; count++) { //We have graph_size - 1 other nodes (since we start at a source
+        //Choose the closest_node
+        int closest_node = find_min_distance_dijkstra(distances, sptSet);
+        
+        // Mark the picked vertex as processed
+        sptSet[closest_node] = true;
+        
+        // Update all the distances of the node's neighbors
+        for (int other_node = 0; other_node < graph_size; other_node++){
+            //Update the distances if we found a shorter path from the source to this other node
+            if (!sptSet[other_node]){ //Make sure we haven't visited this other node.
+                if (adjacency_matrix[closest_node][other_node]){ //Make sure that there is an edge connecting the current node to this next node
+                    if (distances[closest_node] != INT_MAX){ //Make sure the closest node actually has a path back to the source
+                        if (distances[closest_node] + adjacency_matrix[closest_node][other_node] < distances[other_node]){ //If the current path is shorter than the current distance to the other node
+                            distances[other_node] = distances[closest_node] + adjacency_matrix[closest_node][other_node]; //Update with the shorter distance
+                        }
+                    }
+                }
+            }
+        }
+    }
+    std::cout << "Node \tShortest distance from source" << std::endl;
+    for (int i = 0; i < graph_size; i++){
+        std::cout << i<< "\t\t" << distances[i] << std::endl;
+    }
+}

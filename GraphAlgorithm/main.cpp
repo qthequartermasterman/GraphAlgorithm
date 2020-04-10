@@ -39,6 +39,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "Can we find 3 with a BFS?\t" << graph.breadth_first_search(10, 0) <<std::endl;
     std::cout << "Now we'll use Prim's algorithm to find a minimum spanning tree. \n"; graph.prims_algorithm(); std::cout << std::endl;
     std::cout << "Now we'll use Kruskal's algorithm to find a minimum spanning tree. \n"; graph.kruskals_algorithm(); std::cout << std::endl;
+    std::cout << "Now we'll use Dijsktra's algorithm to find the shortest distance to each other node. \n"; graph.dijkstras_algorithm(0); std::cout << std::endl;
     
     std::cout << "Now we're going to perform a topological sort on this direct acyclic graph"<<std::endl;
     adjacency_graph acyclic_graph;
