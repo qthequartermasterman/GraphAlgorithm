@@ -262,35 +262,35 @@ int adjacency_graph::find_minimum_distance_value(int distances[], bool mstSet[])
 void adjacency_graph::prims_algorithm(){
     int graph_size = (int) node_values.size();
     //Array where we will store our new Minimum Spanning Tree
-    int parent[graph_size];
+    int spanning_tree[graph_size];
     
     //distance values used to pick minimum weight edge in cut
     int distances[graph_size];
     
     //Set of nodes we have yet to include in our Minimum Spanning Tree
-    bool mstSet[graph_size];
+    bool nodes_included_in_tree[graph_size];
     
     //Set the distance value for each node as infinite and mark all nodes as unincluded
-    for (int i =0; i < graph_size; i++){
+    for (int i=0; i < graph_size; i++){
         distances[i] = INT_MAX;
-        mstSet[i] = false;
+        nodes_included_in_tree[i] = false;
     }
     
     //Start with the first (0-th) node
     distances[0] = 0;
-    parent[0] = -1; //First node is our root
+    spanning_tree[0] = -1; //First node is our root
     
     //The Minimum Spanning Tree will have graph_size nodes
     for (int count=0; count < graph_size - 1; count++){
         //Pick the minimum distance node that we haven't yet included
-        int u = find_minimum_distance_value(distances, mstSet);
+        int u = find_minimum_distance_value(distances, nodes_included_in_tree);
         //Include the picked vertex in the MST set
-        mstSet[u]=true;
+        nodes_included_in_tree[u]=true;
         
         //Insert into the tree and Update our distance values for the rest of the graph
         for (int v =0; v < graph_size; v++){
-            if (adjacency_matrix[u][v] && mstSet[v] == false && adjacency_matrix[u][v] < distances[v]){
-                parent[v] = u; //Add the chosen node to the tree
+            if (adjacency_matrix[u][v] && nodes_included_in_tree[v] == false && adjacency_matrix[u][v] < distances[v]){
+                spanning_tree[v] = u; //Add the chosen node to the tree
                 distances[v] = adjacency_matrix[u][v]; //Update distance values
             }
         }
@@ -299,6 +299,61 @@ void adjacency_graph::prims_algorithm(){
     //Print this tree
     std::cout << "Edge \tWeight" << std::endl;
     for (int i=1; i < node_values.size(); i++){
-        std::cout << parent[i] << " - " << i << " \t" << adjacency_matrix[i][parent[i]] << std::endl;
+        std::cout << "(" << spanning_tree[i] << ", "  << i << ")\t" << adjacency_matrix[i][spanning_tree[i]] << std::endl;
     }
+}
+
+
+
+//Kruskal's Algorithm
+//This is a super inneffecient implementation using the adjacency matrix. I just didn't want to have to create some interface to make it easier to sort the edges. This is like O(V^3). It could be much, much faster.
+int adjacency_graph::find_kruskal_set(int i, int spanning_tree[]){
+    while (spanning_tree[i] != i)
+        i = spanning_tree[i];
+    return i;
+}
+
+void adjacency_graph::kruskal_union(int i, int j, int spanning_tree[]){
+    int a = find_kruskal_set(i, spanning_tree);
+    int b = find_kruskal_set(j, spanning_tree);
+    spanning_tree[a] = b;
+}
+
+void adjacency_graph::kruskals_algorithm(){
+    int graph_size = (int) node_values.size();
+    int spanning_tree[graph_size];
+    int mincost = 0; // Cost of min MST.
+    
+    // Initialize sets of disjoint sets.
+    for (int i = 0; i < graph_size; i++)
+        spanning_tree[i] = i;
+    
+    // Include minimum weight edges one by one
+    int number_edges_in_tree = 0;
+    std::cout << "Edge \tWeight" << std::endl; //Print headers to columns
+    while (number_edges_in_tree < graph_size - 1) { //Make sure we don't add too many edges for our minimum spanning tree.
+        int current_minimum = INT_MAX;
+        int a = -1; //Source of edge
+        int b = -1; //Destination of edge
+        for (int i = 0; i < graph_size; i++) {
+            for (int j = 0; j < graph_size; j++) {
+                if (adjacency_matrix[i][j]){ //Make sure that there actually is an edge there. If this is 0, then clearly it cannot be included.
+                    if (find_kruskal_set(i, spanning_tree) != find_kruskal_set(j, spanning_tree)) { //Make sure we don't accidentally generate a cycle
+                        if (adjacency_matrix[i][j] < current_minimum){ //If this edge is shorter than the current minimum, use this edge instead.
+                            current_minimum = adjacency_matrix[i][j];
+                            a = i;
+                            b = j;
+                        }
+                    }
+                }
+            }
+        }
+        
+        kruskal_union(a, b, spanning_tree);
+        number_edges_in_tree++;
+
+        std::cout << "(" << a << ", " << b << ")\t" << current_minimum << std::endl;
+        mincost += current_minimum;
+    }
+    std::cout << "\n Minimum cost= " << mincost << std::endl;
 }

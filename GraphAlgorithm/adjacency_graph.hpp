@@ -29,6 +29,8 @@ private:
     void topological_sort_util(int node, bool visited[], std::stack<int> &topological_stack);
     
     int find_minimum_distance_value(int distances[], bool mstSet[]);
+    int find_kruskal_set(int i, int spanning_tree[]); //Finds the set of edges we have chosen connected to node i
+    void kruskal_union(int i, int j, int spanning_tree[]); //Takes the union of two sets
 public:
     Matrix get_adjacency_matrix();
     void set_adjacency_matrix(Matrix matrix);

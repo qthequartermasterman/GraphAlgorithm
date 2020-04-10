@@ -25,3 +25,12 @@ The implementation of a Topological Sort here is almost a DFS, and thus has the 
 ### Prim's Algorithm
 #### Adjacency Matrix-based Graphs
 Our current implementation using an adjacency matrix checks each vertex then compares its distance to every other vertex. So the complexity is O(V^2).
+
+#### Adjacency List-based Graphs
+
+### Kruskal's Algorithm
+#### Adjacency Matrix-based Graphs
+Our current implementation is comically inefficient. It's in the order of O(V^3), since we don't bother sorting the edges first--or even make a list of edges for that matter! Each time we get choose the next edge (of which there are V), we go over the entire adjacency matrix ( O(V^2) ) to check every edge. Hence O(V^3). This could be made more efficient if we made and sorted a list of edges first. If a good sorting algorithm is used with O(n*logn), then theoretically, this could be as small as O(E*logE), and since E<=V^2, this is at most O(V^2*log(V^2))= O(V^2 * 2logV) = O(V^2 * logV).
+
+#### Adjacency List-based Graphs
+Using an adjacency list saves us the hastle of having to generate lists of edges to start with, so we can just join all our lists into one ( O(E) ) and then sort them O(E *logE). Thus, the overall complexity is simply O(E*logE)
