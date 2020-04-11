@@ -10,31 +10,16 @@
 #ifndef binary_tree_hpp
 #define binary_tree_hpp
 
-#include <stdio.h>
+#include "tree.hpp"
 
-struct Node{
-    int key_value;
-    Node* left_child;
-    Node* right_child;
-};
-
-
-class binary_tree{
+class binary_tree : public tree{
 private:
-    Node* root; //The root of the tree
-    
     void insert(int key, Node* leaf);
     Node* search(int key, Node* leaf);
-    void destroy_tree(Node* leaf);
-    
+    int find_max(Node* node);
 public:
-    binary_tree();
-    ~binary_tree();
-    
-    void insert(int key);
-    Node* search(int key);
-    void destroy_tree();
-    
+    int find_min();
+    int find_max();
     
 };
 

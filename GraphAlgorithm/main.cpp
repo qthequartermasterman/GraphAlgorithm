@@ -11,6 +11,8 @@
 #include <iostream>
 #include "matrix.hpp"
 #include "adjacency_graph.hpp"
+#include "binary_tree.hpp"
+#include "min_heap.hpp"
 
 
 int main(int argc, const char * argv[]) {
@@ -47,6 +49,27 @@ int main(int argc, const char * argv[]) {
     acyclic_graph.set_adjacency_matrix(directed_acyclic_matrix);
     acyclic_graph.print();
     std::cout << "One Topological Sort: "; acyclic_graph.topological_sort(); std::cout << std::endl;
+    
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << "Now let's do some tree stuff" << std::endl;
+    int list_of_ints_to_insert_into_trees[] = {1,3,4,5,6,1,2,3,4,604,493,2039,382,324,765,236,854,12346,14,23,34};
+    //Initialize the trees
+    binary_tree bin_tree;
+    min_heap heap;
+    for (auto number : list_of_ints_to_insert_into_trees){
+        bin_tree.insert_key(number);
+        heap.insert(number);
+    };
+    
+    std::cout << "Binary Search Tree" << std::endl;
+    std::cout << "Prefix: "; bin_tree.print_prefix(); std::cout << std::endl;
+    std::cout << "Infix: "; bin_tree.print_infix(); std::cout << std::endl;
+    std::cout << "Postfix: "; bin_tree.print_postfix(); std::cout << std::endl<<std::endl;
+    std::cout << "Min: " << bin_tree.find_min() << "\tMax: " << bin_tree.find_max() << std::endl;
+    
+    std::cout << "Heap" << std::endl;
+    heap.print();
+    std::cout << "Min: " << heap.find_min() << "\tMax: " << heap.find_max() << std::endl;
     
     return 0;
 }

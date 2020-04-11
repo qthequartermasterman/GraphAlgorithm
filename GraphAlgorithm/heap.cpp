@@ -1,17 +1,16 @@
-///*=============binary_tree.cpp================*/
+///*=============min_heap.cpp================*/
 /*
  DESCRIPTION:   
  AUTHOR:        Andrew P. Sansom
  VERSION:       1.0.0
- VERSION DATE:  4/9/20
+ VERSION DATE:  4/10/20
  EMAIL:         andrewsansom@my.unt.edu
- =============binary_tree.cpp================*/
+ COURSE:        CSCE 1040
+ =============min_heap.cpp================*/
 
-#include "binary_tree.hpp"
-#include <iostream>
-
+#include "min_heap.hpp"
 //Insert a key into the tree
-void binary_tree::insert(int key, Node* leaf){
+void min_heap::insert(int key, Node* leaf){
     if (key <= leaf->key_value){ //If the key is less the leaf, then traverse the left half
         if (leaf->left_child != nullptr){ //If there is already a left child, recursively insert it onto that branch
             insert(key, leaf->left_child);
@@ -35,7 +34,7 @@ void binary_tree::insert(int key, Node* leaf){
     }
 }
 //Search functions
-Node* binary_tree::search(int key, Node* leaf){
+Node* min_heap::search(int key, Node* leaf){
     if (leaf != nullptr){ //If the node exists
         if (key==leaf->key_value){ //If the node has the desired value, return the node
             return leaf;
@@ -49,18 +48,5 @@ Node* binary_tree::search(int key, Node* leaf){
     }
 }
 
-int binary_tree::find_min(){
-    return root->key_value;
-}
-//Recursive function. returns the value of the right most node
-int binary_tree::find_max(Node* node){
-    if (node->right_child){ //If there is a right child, find the max on that subtree
-        return find_max(node->right_child);
-    } else {
-        return node->key_value;
-    }
-}
-int binary_tree::find_max(){
-    return find_max(root);
-}
+
 

@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC1E5CFC24417D670010ABDE /* avl_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC1E5CFA24417D670010ABDE /* avl_tree.cpp */; };
 		BC54EF3424401A4D000630E3 /* binary_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC54EF3224401A4D000630E3 /* binary_tree.cpp */; };
+		BC54EF372440B6A2000630E3 /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC54EF352440B6A2000630E3 /* tree.cpp */; };
+		BC54EF3A2440B866000630E3 /* min_heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC54EF382440B866000630E3 /* min_heap.cpp */; };
 		BCBD1101243690540039AC02 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD1100243690540039AC02 /* main.cpp */; };
 		BCBD1109243690A60039AC02 /* adjacency_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD1107243690A60039AC02 /* adjacency_graph.cpp */; };
 		BCBD110F243695490039AC02 /* pointer_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCBD110D243695490039AC02 /* pointer_graph.cpp */; };
@@ -27,8 +30,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC1E5CFA24417D670010ABDE /* avl_tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = avl_tree.cpp; sourceTree = "<group>"; };
+		BC1E5CFB24417D670010ABDE /* avl_tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = avl_tree.hpp; sourceTree = "<group>"; };
 		BC54EF3224401A4D000630E3 /* binary_tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = binary_tree.cpp; sourceTree = "<group>"; };
 		BC54EF3324401A4D000630E3 /* binary_tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = binary_tree.hpp; sourceTree = "<group>"; };
+		BC54EF352440B6A2000630E3 /* tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tree.cpp; sourceTree = "<group>"; };
+		BC54EF362440B6A2000630E3 /* tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tree.hpp; sourceTree = "<group>"; };
+		BC54EF382440B866000630E3 /* min_heap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = min_heap.cpp; sourceTree = "<group>"; };
+		BC54EF392440B866000630E3 /* min_heap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = min_heap.hpp; sourceTree = "<group>"; };
 		BCBD10FD243690540039AC02 /* GraphAlgorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GraphAlgorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBD1100243690540039AC02 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BCBD1107243690A60039AC02 /* adjacency_graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = adjacency_graph.cpp; sourceTree = "<group>"; };
@@ -78,8 +87,14 @@
 				BCBD11102436A0220039AC02 /* matrix.cpp */,
 				BCBD11112436A0220039AC02 /* matrix.hpp */,
 				BCBD11132436D14B0039AC02 /* README.md */,
+				BC54EF382440B866000630E3 /* min_heap.cpp */,
+				BC54EF392440B866000630E3 /* min_heap.hpp */,
 				BC54EF3224401A4D000630E3 /* binary_tree.cpp */,
 				BC54EF3324401A4D000630E3 /* binary_tree.hpp */,
+				BC1E5CFA24417D670010ABDE /* avl_tree.cpp */,
+				BC1E5CFB24417D670010ABDE /* avl_tree.hpp */,
+				BC54EF352440B6A2000630E3 /* tree.cpp */,
+				BC54EF362440B6A2000630E3 /* tree.hpp */,
 			);
 			path = GraphAlgorithm;
 			sourceTree = "<group>";
@@ -146,6 +161,9 @@
 				BCBD1109243690A60039AC02 /* adjacency_graph.cpp in Sources */,
 				BCBD110F243695490039AC02 /* pointer_graph.cpp in Sources */,
 				BC54EF3424401A4D000630E3 /* binary_tree.cpp in Sources */,
+				BC54EF372440B6A2000630E3 /* tree.cpp in Sources */,
+				BC54EF3A2440B866000630E3 /* min_heap.cpp in Sources */,
+				BC1E5CFC24417D670010ABDE /* avl_tree.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
