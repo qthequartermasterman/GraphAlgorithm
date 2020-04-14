@@ -41,3 +41,25 @@ Using an adjacency matrix, for each of the V steps, we compare V distances, sinc
 
 #### Adjacency List-based Graphs
 Using an adjacency list, a heap can be used to reduce the complexity to O(E * logV)
+
+## Tree algorithms
+n is the number of elements in the tree
+### Regular Binary Tree
+- Insert requires at worst O(n) steps, depending on where the element is inserted.
+- Search, find_min, and find_max also likewise require at worst O(n) step.
+
+### Binary Search Tree
+-Insert requires at worst O(n) steps, if the new element is less than every element in the tree and the max element is the root. On average, it should take O(logn), as there are on average log(n) layers.
+-Search requires at worst O(n) steps, if the searched element is the minimum element in the tree and the max element is the root. On average, it should take O(logn), as there are on average log(n) layers.
+-find_min requires at worst O(n) steps, if the max element is the root. On average, it should take O(logn), as there are on average log(n) layers.
+-find_max requires at worst O(n) steps, if the min element is the root. On average, it should take O(logn), as there are on average log(n) layers.
+### AVL Tree
+-Insert requires at worst O(logn) steps, as the balanced tree has log(n) layers
+-Search requires at worst O(logn) steps, as the balanced tree has log(n) layers
+-find_min requires at worst O(logn) steps, as the balanced tree has log(n) layers
+-find_max requires at worst O(logn) steps, as the balanced tree has log(n) layers
+### Min-heap
+-Insert requires at worst O(logn) steps, as the balanced tree has log(n) layers and we will need to swap at most once per layer.
+-Search requires at worst O(n) steps, as we may have to traverse every element.
+-find_min requires at worst O(1) steps, as the heap property requires the minimum to be on top.
+-find_max requires at worst O(n) steps, as we may have to traverse every element.
