@@ -22,7 +22,7 @@ struct Node{
 class tree{
 protected:
     Node* root; //The root of the tree
-    virtual void insert(int key, Node* leaf) = 0;
+    virtual Node* insert(int key, Node* leaf) = 0;
     virtual Node* search(int key, Node* leaf) = 0;
     void destroy_tree(Node* leaf);
     void print_prefix(Node* node);
@@ -32,7 +32,7 @@ protected:
 public:
     tree();
     ~tree();
-    
+     
     void insert_key(int key);
     Node* search_key(int key);
     void destroy_tree();
@@ -41,6 +41,7 @@ public:
     void print_infix();
     virtual int find_min()=0;
     virtual int find_max()=0;
+    int height(Node* node);
     
 };
 #endif /* tree_hpp */

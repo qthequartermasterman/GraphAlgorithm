@@ -9,8 +9,10 @@
 
 #include "binary_tree.hpp"
 #include <iostream>
+#include <algorithm>
 
 //Insert a key into the tree
+/*
 void binary_tree::insert(int key, Node* leaf){
     if (key <= leaf->key_value){ //If the key is less the leaf, then traverse the left half
         if (leaf->left_child != nullptr){ //If there is already a left child, recursively insert it onto that branch
@@ -33,7 +35,82 @@ void binary_tree::insert(int key, Node* leaf){
             leaf->right_child->right_child=nullptr;
         }
     }
+}*/
+
+Node* binary_tree::insert(int key, Node* leaf){
+    if (key <= leaf->key_value){ //If the key is less the leaf, then traverse the left half
+        if (leaf->left_child != nullptr){ //If there is already a left child, recursively insert it onto that branch
+            return insert(key, leaf->left_child);
+        } else {
+            //Otherwise, create a new node with the key and no children
+            leaf->left_child = new Node;
+            leaf->left_child->key_value=key;
+            leaf->left_child->left_child=nullptr;
+            leaf->left_child->right_child=nullptr;
+            return leaf->left_child;
+        }
+    } else {//Otherwise traverse the right half
+        if (leaf->right_child != nullptr){ //If there is already a right child, recursively insert
+            return insert(key, leaf->right_child);
+        } else {
+            //Otherwise, create a new node with the key and no children
+            leaf->right_child = new Node;
+            leaf->right_child->key_value=key;
+            leaf->right_child->left_child=nullptr;
+            leaf->right_child->right_child=nullptr;
+            return leaf->right_child;
+        }
+    }
 }
+ 
+ 
+//Rotation functions
+Node* binary_tree::rotate_right(Node* y){
+    //Rotate
+    /*Node* x = y->left_child;
+    y->left_child = x->right_child;
+    x->right_child = y;*/
+    Node* x = y->left_child;
+    Node* T2 = x->right_child;
+    x->right_child =y;
+    y->left_child = T2;
+    
+    //Update Heights
+    y->height = std::max(tree::height(y->left_child),
+                         tree::height(y->right_child)) + 1;
+    x->height = std::max(tree::height(y->left_child),
+                         tree::height(y->right_child)) + 1;
+    //Return the root
+    return x;
+}
+Node* binary_tree::rotate_left(Node* x){
+    //Rotate
+    /*Node* y = x->right_child;
+    x->right_child = y->left_child;
+    y->left_child = x;*/
+    print_prefix();std::cout << "Inside rotate left before rotate" << std::endl;
+    Node* y = x->right_child;
+    Node* T2= y->left_child;
+    print_prefix();std::cout << "Inside rotate left before rotate after defining pointers"  " y-key: " << y->key_value <<  std::endl;
+    std::cout <<"y left: " << y->left_child <<"y right: " << y->right_child << std::endl;
+    y->left_child = x;
+    x->right_child = T2;
+    print_prefix();std::cout << "Inside rotate left after rotate" <<  std::endl;
+    std::cout <<"y left: " << y->left_child <<"y right: " << y->right_child << std::endl;
+    //Update Heights
+    x->height = std::max(tree::height(x->left_child),
+                         tree::height(x->right_child)) + 1;
+    y->height = std::max(tree::height(y->left_child),
+                         tree::height(y->right_child)) + 1;
+    
+    // Return new root
+    return y;
+}
+
+
+
+
+
 //Search functions
 Node* binary_tree::search(int key, Node* leaf){
     if (leaf != nullptr){ //If the node exists

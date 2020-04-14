@@ -13,6 +13,7 @@
 #include "adjacency_graph.hpp"
 #include "binary_tree.hpp"
 #include "min_heap.hpp"
+#include "avl_tree.hpp"
 
 
 int main(int argc, const char * argv[]) {
@@ -56,9 +57,11 @@ int main(int argc, const char * argv[]) {
     //Initialize the trees
     binary_tree bin_tree;
     min_heap heap;
+    avl_tree avl;
     for (auto number : list_of_ints_to_insert_into_trees){
         bin_tree.insert_key(number);
         heap.insert(number);
+        avl.insert_key(number);
     };
     
     std::cout << "Binary Search Tree" << std::endl;
@@ -66,10 +69,19 @@ int main(int argc, const char * argv[]) {
     std::cout << "Infix: "; bin_tree.print_infix(); std::cout << std::endl;
     std::cout << "Postfix: "; bin_tree.print_postfix(); std::cout << std::endl<<std::endl;
     std::cout << "Min: " << bin_tree.find_min() << "\tMax: " << bin_tree.find_max() << std::endl;
+    std::cout << std::endl;
     
     std::cout << "Heap" << std::endl;
     heap.print();
     std::cout << "Min: " << heap.find_min() << "\tMax: " << heap.find_max() << std::endl;
+    std::cout << std::endl;
+    
+    std::cout << "AVL" << std::endl;
+    std::cout << "Prefix: "; avl.print_prefix(); std::cout << std::endl;
+    std::cout << "Infix: "; avl.print_infix(); std::cout << std::endl;
+    std::cout << "Postfix: "; avl.print_postfix(); std::cout << std::endl<<std::endl;
+    std::cout << "Min: " << avl.find_min() << "\tMax: " << avl.find_max() << std::endl;
+    
     
     return 0;
 }

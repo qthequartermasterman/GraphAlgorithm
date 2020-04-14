@@ -245,7 +245,7 @@ int adjacency_graph::find_minimum_distance_value(int distances[], bool mstSet[])
     //Start off with a minimum value of infinity
     int minimum = INT_MAX;
     //Store the index of the node with minimum value
-    int min_index;
+    int min_index=-1;
     int graph_size = (int) node_values.size();
     
     for (int i=0; i < graph_size; i++){
@@ -362,7 +362,7 @@ void adjacency_graph::kruskals_algorithm(){
 //Dijkstra's Algorithm
 int adjacency_graph::find_min_distance_dijkstra(int distances[], bool sptSet[]){
     int current_minimum = INT_MAX; //Our currently smallest distance is infinity.
-    int index_of_minimum_value;
+    int index_of_minimum_value=-1;
     int graph_size = (int) node_values.size();
     for (int v = 0; v < graph_size; v++){
         if (sptSet[v] == false && distances[v] <= current_minimum){ //Make sure we haven't used the node and that it is closest than the current closest one.

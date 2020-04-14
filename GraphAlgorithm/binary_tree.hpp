@@ -14,12 +14,17 @@
 
 class binary_tree : public tree{
 private:
-    void insert(int key, Node* leaf);
     Node* search(int key, Node* leaf);
     int find_max(Node* node);
+protected:
+    Node* insert(int key, Node* leaf);
+    Node* rotate_right(Node* y);
+    Node* rotate_left(Node* x);
+
 public:
     int find_min();
     int find_max();
+
     
 };
 

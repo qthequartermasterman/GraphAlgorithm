@@ -74,6 +74,13 @@ void tree::print_infix(){
     print_infix(root);
 }
 
+int tree::height(Node* node){
+    if (node == nullptr){
+        return 0;
+    }
+    return node->height;
+}
+
 
 
 
